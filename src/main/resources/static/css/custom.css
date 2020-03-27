@@ -1,0 +1,311 @@
+
+.header-text {
+    font-size: 17px;
+    font-family: Arial;
+    margin-left: 180px;
+    position: absolute;
+}
+
+.draw-border {
+  box-shadow: inset 0 0 0 4px #a6b1d8;
+  color: #a6b1d8;
+  -webkit-transition: color 0.25s 0.0833333333s;
+  transition: color 0.25s 0.0833333333s;
+  position: relative;
+}
+.draw-border::before, .draw-border::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 0;
+}
+.draw-border::before {
+  border-bottom-width: 4px;
+  border-left-width: 4px;
+}
+.draw-border::after {
+  border-top-width: 4px;
+  border-right-width: 4px;
+}
+.draw-border:hover {
+  color: #fc0140;
+}
+.draw-border:hover::before, .draw-border:hover::after {
+  border-color: #fc0140;
+  -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
+  transition: border-color 0s, width 0.25s, height 0.25s;
+  width: 100%;
+  height: 100%;
+}
+.draw-border:hover::before {
+  -webkit-transition-delay: 0s, 0s, 0.25s;
+          transition-delay: 0s, 0s, 0.25s;
+}
+.draw-border:hover::after {
+  -webkit-transition-delay: 0s, 0.25s, 0s;
+          transition-delay: 0s, 0.25s, 0s;
+}
+
+.btn {
+
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1.5;
+  font: 700 1.2rem 'Roboto Slab', sans-serif;
+  padding: 1em 2em;
+  letter-spacing: 0.05rem;
+}
+.btn:focus {
+  outline: 2px dotted #fc0140;
+}
+
+.stations {
+  background-image: url(stations_mono_line_legend.svg);
+  margin: auto;
+  width: 1260px;
+  height: 725px;
+  padding: 20px;
+  }
+
+.size {
+ font-size: 17px;
+ font-family: Arial;
+ position: absolute;
+
+}
+
+.jogeva {
+  margin-top: 330px;
+  margin-left: 880px;
+}
+.jogeva2 {
+  margin-top: 350px;
+  margin-left: 880px;
+}
+.jogeva3 {
+  margin-top: 370px;
+  margin-left: 880px;
+}
+.johvi {
+  margin-top: 115px;
+  margin-left: 1068px;
+}
+.johvi2 {
+  margin-top: 135px;
+  margin-left: 1068px;
+}
+.johvi3 {
+  margin-top: 155px;
+  margin-left: 1068px;
+}
+.kihnu {
+  margin-top: 538px;
+  margin-left: 450px;
+}
+.kihnu2 {
+  margin-top: 558px;
+  margin-left: 450px;
+}
+.kihnu3 {
+  margin-top: 578px;
+  margin-left: 450px;
+}
+.kunda {
+  margin-top: -22px;
+  margin-left: 909px;
+}
+.kunda2 {
+  margin-top: -2px;
+  margin-left: 909px;
+}
+.kunda3 {
+  margin-top: 18px;
+  margin-left: 909px;
+}
+.kuusiku {
+  margin-top: 158px;
+  margin-left: 581px;
+}
+.kuusiku2 {
+  margin-top: 178px;
+  margin-left: 581px;
+}
+.kuusiku3 {
+  margin-top: 198px;
+  margin-left: 581px;
+}
+.laanenigula{
+  margin-top: 259px;
+  margin-left: 365px;
+}
+.laanenigula2 {
+  margin-top: 279px;
+  margin-left: 365px;
+}
+.laanenigula3 {
+  margin-top: 299px;
+  margin-left: 365px;
+}
+.narva {
+  margin-top: 21px;
+  margin-left: 1208px;
+}
+.narva2 {
+  margin-top: 41px;
+  margin-left: 1208px;
+}
+.narva3 {
+  margin-top: 61px;
+  margin-left: 1208px;
+}
+.parnu {
+  margin-top: 450px;
+  margin-left: 535px;
+}
+.parnu2 {
+  margin-top: 470px;
+  margin-left: 535px;
+}
+.parnu3 {
+  margin-top: 490px;
+  margin-left: 535px;
+}
+.ristna {
+  margin-top: 264px;
+  margin-left: 100px;
+}
+.ristna2 {
+  margin-top: 284px;
+  margin-left: 100px;
+}
+.ristna3 {
+  margin-top: 304px;
+  margin-left: 100px;
+}
+.ruhnu {
+  margin-top: 653px;
+  margin-left: 313px;
+}
+.ruhnu2 {
+  margin-top: 673px;
+  margin-left: 313px;
+}
+.ruhnu3 {
+  margin-top: 693px;
+  margin-left: 313px;
+}
+.sorve {
+  margin-top: 584px;
+  margin-left: 105px;
+}
+.sorve2 {
+  margin-top: 604px;
+  margin-left: 105px;
+}
+.sorve3 {
+  margin-top: 624px;
+  margin-left: 105px;
+}
+.harku {
+  margin-top: 17px;
+  margin-left: 560px;
+}
+.harku2 {
+    margin-top: 37px;
+    margin-left: 560px;
+}
+.harku3 {
+    margin-top: 57px;
+    margin-left: 560px;
+}
+.toravere {
+  margin-top: 495px;
+  margin-left: 896px;
+}
+.toravere2 {
+  margin-top: 515px;
+  margin-left: 896px;
+}
+.toravere3 {
+  margin-top: 535px;
+  margin-left: 896px;
+}
+.mustvee {
+  margin-top: 205px;
+  margin-left: 989px;
+}
+.mustvee2 {
+  margin-top: 225px;
+  margin-left: 989px;
+}
+.mustvee3 {
+  margin-top: 245px;
+  margin-left: 989px;
+}
+.turi {
+  margin-top: 302px;
+  margin-left: 711px;
+}
+.turi2 {
+  margin-top: 322px;
+  margin-left: 711px;
+}
+.turi3 {
+  margin-top: 342px;
+  margin-left: 711px;
+}
+
+.vaikemaarja {
+  margin-top: 108px;
+  margin-left: 845px;
+}
+.vaikemaarja2 {
+  margin-top: 128px;
+  margin-left: 845px;
+}
+.vaikemaarja3 {
+  margin-top: 148px;
+  margin-left: 845px;
+}
+.viljandi {
+  margin-top: 458px;
+  margin-left: 733px;
+}
+.viljandi2 {
+  margin-top: 478px;
+  margin-left: 733px;
+}
+.viljandi3 {
+  margin-top: 498px;
+  margin-left: 733px;
+}
+.vilsandi {
+  margin-top: 469px;
+  margin-left: 57px;
+}
+.vilsandi2 {
+  margin-top: 489px;
+  margin-left: 57px;
+}
+.vilsandi3 {
+  margin-top: 509px;
+  margin-left: 57px;
+}
+.voru {
+  margin-top: 637px;
+  margin-left: 996px;
+}
+.voru2 {
+  margin-top: 657px;
+  margin-left: 996px;
+}
+.voru3 {
+  margin-top: 677px;
+  margin-left: 996px;
+}
