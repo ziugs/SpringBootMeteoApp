@@ -78,10 +78,5 @@ public class MainController {
         return "home";
     }
 
-    public String display(Model model) {
-        model.addAttribute("harku ", "WOW!");
-        return "home";
-
-    }
 }
 
