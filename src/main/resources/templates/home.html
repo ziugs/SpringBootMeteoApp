@@ -13,14 +13,15 @@
   width: 1260px;
   height: 725px;
   padding: 20px;
+  white-space: nowrap;
   }
     </style>
 </head>
 <body>
 <div class="header-text">
-    <p>EMHI serveris uuenevad andmed iga 10 minuti tagant</p>
-    <p th:text="${time}" >Hetkel on laardil X andmed</p>
-    <button class="btn draw-border" type="submit"  onClick="refreshPage()">UUENDA ANDMEID</button>
+<p>EMHI serveris uuenevad andmed iga 10 minuti tagant</p>
+<p th:text="${time}">Hetkel on laardil X andmed</p>
+<button class="btn draw-border" type="submit"  onClick="refreshPage()">UUENDA ANDMEID</button>
 </div>
 
 <div class="stations">
@@ -50,9 +51,9 @@
     <p th:text="${laanenigula2}" class="laanenigula2 size">/ </p>
     <p th:text="${laanenigula3}" class="laanenigula3 size">/ </p>
 
-    <p th:text="${narva}" class="narva size">/ </p>
-    <p th:text="${narva2}" class="narva2 size">/ </p>
-    <p th:text="${narva3}" class="narva3 size">/ </p>
+    <p th:text="${narva}" class="narva size">hetkel ei ole teenus kättesaadav </p>
+    <p th:text="${narva2}" class="narva2 size">hetkel ei ole teenus kättesaadav </p>
+    <p th:text="${narva3}" class="narva3 size">hetkel ei ole teenus kättesaadav </p>
 
     <p th:text="${parnu}" class="parnu size">/ </p>
     <p th:text="${parnu2}" class="parnu2 size">/ </p>

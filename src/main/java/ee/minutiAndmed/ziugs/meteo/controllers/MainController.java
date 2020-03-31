@@ -49,7 +49,7 @@ public class MainController {
         String formattedDate = date.format(dateFornmat);
 
         LocalTime lt = LocalTime.parse(Downloader.updateTimeOnServer.get(0));
-        model.addAttribute("time", "Hetkel on kaardil " +  formattedDate + " " + timeFormat.format(lt.plusMinutes(3)) + " UTC andmed");
+        model.addAttribute("time", "Hetkel on kaardil " + formattedDate + " " + timeFormat.format(lt.plusMinutes(3)) + " UTC andmed");
 
         for (int i = 0; i < stationsArray.length; i++) {
             if (Downloader.cloudBase.get(i).isBlank()) {
@@ -79,26 +79,9 @@ public class MainController {
     }
 
     public String display(Model model) {
-        //final PlayerPositionFormregleForm playerPositionForm = new playerPositionForm();
-
         model.addAttribute("harku ", "WOW!");
         return "home";
 
-    /*@RequestMapping (value = "/home")
-    public void uuenda(Model model) {
-        Downloader.putCloudBase();
-        Downloader.putOkta();
-        Downloader.putVisibility();
-        Downloader.putWindDirection();
-        Downloader.putWindSpeed();
-        Downloader.putWeatherFenomenon();
-
-        String[] stationsArray = {"jogeva", "johvi", "kihnu", "kunda", "kuusiku", "laanenigula", "narva", "parnu", "ristna", "ruhnu", "sorve", "harku", "toravere", "mustvee", "turi", "vaikemaarja", "viljandi", "vilsandi", "voru"};
-        String[] stationsArray2 = {"jogeva2", "johvi2", "kihnu2", "kunda2", "kuusiku2", "laanenigula2", "narva2", "parnu2", "ristna2", "ruhnu2", "sorve2", "harku2", "toravere2", "mustvee2", "turi2", "vaikemaarja2", "viljandi2", "vilsandi2", "voru2"};
-        String[] stationsArray3 = {"jogeva3", "johvi3", "kihnu3", "kunda3", "kuusiku3", "laanenigula3", "narva3", "parnu3", "ristna3", "ruhnu3", "sorve3", "harku3", "toravere3", "mustvee3", "turi3", "vaikemaarja3", "viljandi3", "vilsandi3", "voru3"};
-
-        model.addAttribute("jogeva", "wow!");
-*/
     }
 }
 
