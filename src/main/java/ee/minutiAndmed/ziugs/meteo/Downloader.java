@@ -82,7 +82,7 @@ public class Downloader {
         return bos;
     }
 
-    public static void putVisibility() {
+     public static void putVisibility() {
         for (int i = 20; i < Downloader.allValues.size(); i += 33) {
             Downloader.allValues.get(i);
             Downloader.visibility.add(Downloader.allValues.get(i));

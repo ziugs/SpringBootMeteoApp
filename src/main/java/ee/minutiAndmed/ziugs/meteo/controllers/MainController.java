@@ -15,6 +15,11 @@ import java.time.format.DateTimeFormatter;
 @Controller
 public class MainController {
 
+    String[] stationsArray = {"jogeva", "johvi", "kihnu", "kunda", "kuusiku", "laanenigula", "narva", "parnu", "ristna", "ruhnu", "sorve", "harku", "toravere", "mustvee", "turi", "vaikemaarja", "viljandi", "vilsandi", "voru"};
+    String[] stationsArray2 = {"jogeva2", "johvi2", "kihnu2", "kunda2", "kuusiku2", "laanenigula2", "narva2", "parnu2", "ristna2", "ruhnu2", "sorve2", "harku2", "toravere2", "mustvee2", "turi2", "vaikemaarja2", "viljandi2", "vilsandi2", "voru2"};
+    String[] stationsArray3 = {"jogeva3", "johvi3", "kihnu3", "kunda3", "kuusiku3", "laanenigula3", "narva3", "parnu3", "ristna3", "ruhnu3", "sorve3", "harku3", "toravere3", "mustvee3", "turi3", "vaikemaarja3", "viljandi3", "vilsandi3", "voru3"};
+
+
 
     @RequestMapping(value = "/")
     public String home(Model model) {
@@ -38,10 +43,6 @@ public class MainController {
         Downloader.putWindSpeed();
         Downloader.putWeatherFenomenon();
         Downloader.putUpdateTimeOnServer();
-
-        String[] stationsArray = {"jogeva", "johvi", "kihnu", "kunda", "kuusiku", "laanenigula", "narva", "parnu", "ristna", "ruhnu", "sorve", "harku", "toravere", "mustvee", "turi", "vaikemaarja", "viljandi", "vilsandi", "voru"};
-        String[] stationsArray2 = {"jogeva2", "johvi2", "kihnu2", "kunda2", "kuusiku2", "laanenigula2", "narva2", "parnu2", "ristna2", "ruhnu2", "sorve2", "harku2", "toravere2", "mustvee2", "turi2", "vaikemaarja2", "viljandi2", "vilsandi2", "voru2"};
-        String[] stationsArray3 = {"jogeva3", "johvi3", "kihnu3", "kunda3", "kuusiku3", "laanenigula3", "narva3", "parnu3", "ristna3", "ruhnu3", "sorve3", "harku3", "toravere3", "mustvee3", "turi3", "vaikemaarja3", "viljandi3", "vilsandi3", "voru3"};
 
         LocalDate date = LocalDate.now();
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
