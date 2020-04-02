@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="90mm"
+   height="25mm"
+   viewBox="0 0 90 25"
+   version="1.1"
+   id="svg4327"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="legend.svg">
+  <defs
+     id="defs4321" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="439.35925"
+     inkscape:cy="236.0756"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1600"
+     inkscape:window-height="837"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4324">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-272)">
+    <path
+       style="opacity:0.96600001;fill:#ff003f;fill-opacity:1;fill-rule:nonzero;stroke:#29b7ee;stroke-width:0;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.90055249"
+       d="m 2.5471306,277.14621 c -0.01315,-0.002 -0.05613,-0.009 -0.09553,-0.0147 -0.337479,-0.0495 -0.663697,-0.28936 -0.823812,-0.60559 -0.08499,-0.16786 -0.121989,-0.32559 -0.121875,-0.51951 8.4e-5,-0.13739 0.009,-0.20307 0.04364,-0.32272 0.05482,-0.18917 0.147436,-0.34069 0.299773,-0.49043 0.153117,-0.15051 0.309057,-0.23944 0.513307,-0.29275 0.130064,-0.034 0.342935,-0.0419 0.477544,-0.0178 0.387776,0.0694 0.708792,0.3265 0.858102,0.6872 0.165452,0.39968 0.09228,0.85457 -0.190111,1.18184 -0.163772,0.1898 -0.386892,0.32136 -0.631452,0.37234 -0.08324,0.0174 -0.280905,0.0306 -0.329581,0.0221 z"
+       id="path7064"
+       inkscape:connector-curvature="0" />
+    <text
+       id="text7068"
+       y="277.31647"
+       x="4.2864823"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.58611107px;line-height:2;font-family:monospace;-inkscape-font-specification:'monospace Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"
+       inkscape:transform-center-x="-16.147364"
+       inkscape:transform-center-y="31.487359"><tspan
+         y="277.31647"
+         x="4.2864823"
+         id="tspan7066"
+         sodipodi:role="line"
+         style="stroke-width:0.26458332">Meteojaam</tspan></text>
+    <path
+       style="fill:none;stroke:#ff003f;stroke-width:0.43684524;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 2.5471306,277.14621 -0.08448,17.18436"
+       id="path7070"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.25;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="3.6570191"
+       y="283.03604"
+       id="text7074"><tspan
+         sodipodi:role="line"
+         id="tspan7072"
+         x="3.6570191"
+         y="283.03604"
+         style="stroke-width:0.26458332">(1. pilvekihi kõrgus) (pilvekihi hulk) (nähtavus)</tspan></text>
+    <text
+       id="text7086"
+       y="288.22159"
+       x="3.7104249"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.25;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         y="288.22159"
+         x="3.7104249"
+         id="tspan7084"
+         sodipodi:role="line"
+         style="stroke-width:0.26458332">(tuule suund) (tuule kiirus)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.25;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="3.7867265"
+       y="293.40637"
+       id="text7090"><tspan
+         sodipodi:role="line"
+         id="tspan7088"
+         x="3.7867265"
+         y="293.40637"
+         style="stroke-width:0.26458332">(atmosfääri nähtus)</tspan></text>
+  </g>
+</svg>
