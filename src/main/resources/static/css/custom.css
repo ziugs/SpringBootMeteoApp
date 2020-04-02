@@ -1,39 +1,6 @@
 .legend {
-  width: 10em;
-  text-align: center;
-  font-size: 17px;
-  font-family: Arial;
-  margin-left: 110px;
-  padding: 1em 2em;
-  border-radius: 3em;
-  color:#fc0140;
-  cursor: pointer;
+    margin-left: 180px;
 }
-
-
-
-details[open] summary::after {
-  position: fixed;
-  right: calc(50vw - 360px / 2 - 2em);
-  top:  calc(50vh - 240px / 2 - 2em);
-  padding: 5pt 10pt;
-  z-index: 9;
-}
-
-details[open] summary::before {
-  content: '';
-  display: block;
-  width: 100vw;
-  height: 100vh;
-  background: black;
-  position: fixed;
-  top: 0;
-  left: 0;
-  opacity: 0.5;
-  z-index: 1;
-
-}
-
 .header-text {
     font-size: 17px;
     font-family: Arial;
