@@ -10,20 +10,36 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.net.ftp.FTPClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class Downloader {
 
     private static final String FOLDER = "/10_min_andmed/";
-    public static List<String> allValues = new ArrayList<>();
-    public static List<String> updateTimeOnServer = new ArrayList<>();
-    public static List<String> windDirection = new ArrayList<>();
-    public static List<String> windSpeed = new ArrayList<>();
-    public static List<String> visibility = new ArrayList<>();
-    public static List<String> weatherFenomenon = new ArrayList<>();
-    public static List<String> cloudBase = new ArrayList<>();
-    public static List<String> okta = new ArrayList<>();
 
-    public void doDownload() {
+    private static final int NUMBEROFCOLUMNS = 33;
+    private static final int INDEXOFVISIBILITY = 20;
+    private static final int INDEXOFWINDDIRECTION = 11;
+    private static final int INDEXOFWINDSPEED = 7;
+    private static final int INDEXOFWEATHERFENOMENON = 15;
+    private static final int INDEXOFCLOUDBASE = 22;
+    private static final int INDEXOFOKTA = 23;
+    private static final int INDEXOFUPDATETIMEONSERVER = 0;
+
+    private List<String> allValues = new ArrayList<>();
+    private List<String> updateTimeOnServer = new ArrayList<>();
+    private List<String> windDirection = new ArrayList<>();
+    private List<String> windSpeed = new ArrayList<>();
+    private List<String> visibility = new ArrayList<>();
+    private List<String> weatherFenomenon = new ArrayList<>();
+    private List<String> cloudBase = new ArrayList<>();
+    private List<String> okta = new ArrayList<>();
+
+
+
+    void doDownload() {
         FTPClient ftpClient = new FTPClient();
         ftpClient.setControlEncoding("UTF-8");
         Map<Stations, List<String>> meteoData = new HashMap<>();
@@ -54,11 +70,9 @@ public class Downloader {
             List<CSVRecord> lines = parser.getRecords();
             List<String> result = new ArrayList<String>();
             lines.get(lines.size() - 1).forEach(str -> result.add(str));
-
             for (int i = 0; i < result.size(); i++) {
                 String b = result.get(i);
                 allValues.add(b);
-
             }
 
             return result;
@@ -66,7 +80,6 @@ public class Downloader {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     private ByteArrayOutputStream retrieveFile(String fileName, FTPClient ftpClient) {
@@ -82,57 +95,46 @@ public class Downloader {
         return bos;
     }
 
-     public static void putVisibility() {
-        for (int i = 20; i < Downloader.allValues.size(); i += 33) {
-            Downloader.allValues.get(i);
-            Downloader.visibility.add(Downloader.allValues.get(i));
-
+    private void putToList() {
+        for (int i = INDEXOFVISIBILITY; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+            allValues.get(i);
+            visibility.add(allValues.get(i));
+        }
+        for (int i = INDEXOFWINDDIRECTION; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+            allValues.get(i);
+            windDirection.add(allValues.get(i));
+        }
+        for (int i = INDEXOFWINDSPEED; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+            allValues.get(i);
+            windSpeed.add(allValues.get(i));
+        }
+        for (int i = INDEXOFWEATHERFENOMENON; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+            allValues.get(i);
+            weatherFenomenon.add(allValues.get(i));
+        }
+        for (int i = INDEXOFCLOUDBASE; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+            allValues.get(i);
+            cloudBase.add(allValues.get(i));
+        }
+        for (int i = INDEXOFOKTA; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+            allValues.get(i);
+            okta.add(allValues.get(i));
+        }
+        for (int i = INDEXOFUPDATETIMEONSERVER; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+            allValues.get(i);
+            updateTimeOnServer.add(allValues.get(i));
         }
     }
 
-    public static void putWindDirection() {
-        for (int i = 11; i < Downloader.allValues.size(); i += 33) {
-            Downloader.allValues.get(i);
-            Downloader.windDirection.add(Downloader.allValues.get(i));
+    private void clearLists(){
+        cloudBase.clear();
+        visibility.clear();
+        okta.clear();
+        updateTimeOnServer.clear();
+        weatherFenomenon.clear();
+        windDirection.clear();
+        windSpeed.clear();
 
-        }
-    }
-    public static void putWindSpeed() {
-        for (int i = 7; i < Downloader.allValues.size(); i += 33) {
-            Downloader.allValues.get(i);
-            Downloader.windSpeed.add(Downloader.allValues.get(i));
-
-        }
-    }
-
-    public static void putWeatherFenomenon() {
-        for (int i = 15; i < Downloader.allValues.size(); i += 33) {
-            Downloader.allValues.get(i);
-            Downloader.weatherFenomenon.add(Downloader.allValues.get(i));
-
-        }
-    }
-
-    public static void putCloudBase() {
-        for (int i = 22; i < Downloader.allValues.size(); i += 33) {
-            Downloader.allValues.get(i);
-            Downloader.cloudBase.add(Downloader.allValues.get(i));
-
-        }
-    }
-
-    public static void putOkta() {
-        for (int i = 23; i < Downloader.allValues.size(); i += 33) {
-            Downloader.allValues.get(i);
-            Downloader.okta.add(Downloader.allValues.get(i));
-        }
-    }
-
-    public static void putUpdateTimeOnServer() {
-        for (int i = 0; i < Downloader.allValues.size(); i += 33) {
-            Downloader.allValues.get(i);
-            Downloader.updateTimeOnServer.add(Downloader.allValues.get(i));
-        }
     }
 
 }
