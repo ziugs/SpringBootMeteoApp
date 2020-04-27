@@ -40,10 +40,6 @@ public class Downloader {
         return updateTimeOnServer;
     }
 
-    public List<String> getAllValues() {
-        return allValues;
-    }
-
     public List<String> getWindDirection() {
         return windDirection;
     }
@@ -68,7 +64,7 @@ public class Downloader {
         return okta;
     }
 
-    void doDownload() {
+    public void doDownload() {
         FTPClient ftpClient = new FTPClient();
         ftpClient.setControlEncoding("UTF-8");
         Map<Stations, List<String>> meteoData = new HashMap<>();
@@ -99,9 +95,39 @@ public class Downloader {
             List<CSVRecord> lines = parser.getRecords();
             List<String> result = new ArrayList<String>();
             lines.get(lines.size() - 1).forEach(str -> result.add(str));
+
             for (int i = 0; i < result.size(); i++) {
                 String b = result.get(i);
                 allValues.add(b);
+            }
+
+            for (int i = INDEXOFVISIBILITY; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+                allValues.get(i);
+                visibility.add(allValues.get(i));
+            }
+            for (int i = INDEXOFWINDDIRECTION; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+                allValues.get(i);
+                windDirection.add(allValues.get(i));
+            }
+            for (int i = INDEXOFWINDSPEED; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+                allValues.get(i);
+                windSpeed.add(allValues.get(i));
+            }
+            for (int i = INDEXOFWEATHERFENOMENON; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+                allValues.get(i);
+                weatherFenomenon.add(allValues.get(i));
+            }
+            for (int i = INDEXOFCLOUDBASE; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+                allValues.get(i);
+                cloudBase.add(allValues.get(i));
+            }
+            for (int i = INDEXOFOKTA; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+                allValues.get(i);
+                okta.add(allValues.get(i));
+            }
+            for (int i = INDEXOFUPDATETIMEONSERVER; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+                allValues.get(i);
+                updateTimeOnServer.add(allValues.get(i));
             }
 
             return result;
@@ -124,38 +150,7 @@ public class Downloader {
         return bos;
     }
 
-    private void putToList() {
-        for (int i = INDEXOFVISIBILITY; i < allValues.size(); i += NUMBEROFCOLUMNS) {
-            allValues.get(i);
-            visibility.add(allValues.get(i));
-        }
-        for (int i = INDEXOFWINDDIRECTION; i < allValues.size(); i += NUMBEROFCOLUMNS) {
-            allValues.get(i);
-            windDirection.add(allValues.get(i));
-        }
-        for (int i = INDEXOFWINDSPEED; i < allValues.size(); i += NUMBEROFCOLUMNS) {
-            allValues.get(i);
-            windSpeed.add(allValues.get(i));
-        }
-        for (int i = INDEXOFWEATHERFENOMENON; i < allValues.size(); i += NUMBEROFCOLUMNS) {
-            allValues.get(i);
-            weatherFenomenon.add(allValues.get(i));
-        }
-        for (int i = INDEXOFCLOUDBASE; i < allValues.size(); i += NUMBEROFCOLUMNS) {
-            allValues.get(i);
-            cloudBase.add(allValues.get(i));
-        }
-        for (int i = INDEXOFOKTA; i < allValues.size(); i += NUMBEROFCOLUMNS) {
-            allValues.get(i);
-            okta.add(allValues.get(i));
-        }
-        for (int i = INDEXOFUPDATETIMEONSERVER; i < allValues.size(); i += NUMBEROFCOLUMNS) {
-            allValues.get(i);
-            updateTimeOnServer.add(allValues.get(i));
-        }
-    }
-
-    private void clearLists(){
+    public void clearLists() {
         cloudBase.clear();
         visibility.clear();
         okta.clear();

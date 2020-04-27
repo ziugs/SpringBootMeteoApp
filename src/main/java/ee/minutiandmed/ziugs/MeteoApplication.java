@@ -1,6 +1,7 @@
 package ee.minutiandmed.ziugs;
 
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,6 +13,7 @@ public class MeteoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MeteoApplication.class, args);
+
 
 
     }
