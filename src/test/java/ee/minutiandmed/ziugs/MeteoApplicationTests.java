@@ -1,4 +1,4 @@
-package ee.minutiAndmed.ziugs.meteo;
+package ee.minutiandmed.ziugs;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

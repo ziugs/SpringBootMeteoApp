@@ -7,6 +7,8 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="ee.minutiAndmed.ziugs.meteo" />
+    <bean id="downloaderBean" class="ee.minutiandmed.ziugs.Downloader">
+
+    </bean>
 
 </beans>

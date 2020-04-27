@@ -1,4 +1,4 @@
-package ee.minutiAndmed.ziugs.meteo;
+package ee.minutiandmed.ziugs;
 
 
 import java.io.ByteArrayOutputStream;
@@ -10,11 +10,9 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.net.ftp.FTPClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 
-@Component
+
 public class Downloader {
 
     private static final String FOLDER = "/10_min_andmed/";

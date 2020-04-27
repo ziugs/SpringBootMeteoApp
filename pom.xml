@@ -9,7 +9,7 @@
         <version>2.2.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>ee.10minutiAndmed.ziugs</groupId>
+    <groupId>ee.minutiandmed.ziugs</groupId>
     <artifactId>meteo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>meteo</name>

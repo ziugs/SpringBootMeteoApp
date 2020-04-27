@@ -1,4 +1,4 @@
-package ee.minutiAndmed.ziugs.meteo;
+package ee.minutiandmed.ziugs;
 
 public enum Stations {
 

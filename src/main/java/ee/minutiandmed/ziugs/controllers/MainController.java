@@ -1,4 +1,4 @@
-package ee.minutiAndmed.ziugs.meteo.controllers;
+package ee.minutiandmed.ziugs.controllers;
 
 
 import org.springframework.stereotype.Controller;

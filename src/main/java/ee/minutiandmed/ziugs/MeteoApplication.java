@@ -1,4 +1,4 @@
-package ee.minutiAndmed.ziugs.meteo;
+package ee.minutiandmed.ziugs;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,10 +10,9 @@ public class MeteoApplication {
     public static void main(String[] args) {
         SpringApplication.run(MeteoApplication.class, args);
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        Downloader downloader = context.getBean("downloader", Downloader.class);
-        downloader.doDownload();
+        Downloader downloaderBean = context.getBean("downloaderBean", Downloader.class);
 
-        context.close();
+       context.close();
 
     }
 
