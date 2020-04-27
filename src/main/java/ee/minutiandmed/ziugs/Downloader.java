@@ -10,9 +10,10 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.net.ftp.FTPClient;
+import org.springframework.stereotype.Component;
 
 
-
+@Component
 public class Downloader {
 
     private static final String FOLDER = "/10_min_andmed/";
@@ -35,7 +36,37 @@ public class Downloader {
     private List<String> cloudBase = new ArrayList<>();
     private List<String> okta = new ArrayList<>();
 
+    public List<String> getUpdateTimeOnServer() {
+        return updateTimeOnServer;
+    }
 
+    public List<String> getAllValues() {
+        return allValues;
+    }
+
+    public List<String> getWindDirection() {
+        return windDirection;
+    }
+
+    public List<String> getWindSpeed() {
+        return windSpeed;
+    }
+
+    public List<String> getVisibility() {
+        return visibility;
+    }
+
+    public List<String> getWeatherFenomenon() {
+        return weatherFenomenon;
+    }
+
+    public List<String> getCloudBase() {
+        return cloudBase;
+    }
+
+    public List<String> getOkta() {
+        return okta;
+    }
 
     void doDownload() {
         FTPClient ftpClient = new FTPClient();
