@@ -24,16 +24,13 @@ public class MainController {
 
     @RequestMapping(value = "/")
     public String home(Model model) {
-
-
-
         LocalDate date = LocalDate.now();
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM");
         String formattedDate = date.format(dateFormat);
 
-       LocalTime lt = LocalTime.parse(downloader.getUpdateTimeOnServer().get(0));
-       model.addAttribute("time", "Hetkel on kaardil " + formattedDate + " " + timeFormat.format(lt.plusMinutes(3)) + " UTC andmed");
+        LocalTime lt = LocalTime.parse(downloader.getUpdateTimeOnServer().get(0));
+        model.addAttribute("time", "Hetkel on kaardil " + formattedDate + " " + timeFormat.format(lt.plusMinutes(3)) + " UTC andmed");
 
         for (int i = 0; i < STATIONSARRAY.length; i++) {
             if (downloader.getCloudBase().get(i).isBlank()) {
@@ -58,7 +55,6 @@ public class MainController {
                 model.addAttribute(STATIONSARRAY3[i], downloader.getWeatherFenomenon().get(i));
             }
         }
-
 
         return "home";
 

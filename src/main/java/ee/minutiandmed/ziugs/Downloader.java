@@ -67,7 +67,7 @@ public class Downloader {
     }
 
     @PostConstruct
-    public void doDownload() {
+    void doDownload() {
         FTPClient ftpClient = new FTPClient();
         ftpClient.setControlEncoding("UTF-8");
         Map<Stations, List<String>> meteoData = new HashMap<>();
@@ -138,6 +138,7 @@ public class Downloader {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     private ByteArrayOutputStream retrieveFile(String fileName, FTPClient ftpClient) {
@@ -153,7 +154,7 @@ public class Downloader {
         return bos;
     }
 
-    public void clearLists() {
+    void clearLists() {
         cloudBase.clear();
         visibility.clear();
         okta.clear();
