@@ -25,7 +25,7 @@ public class MainController {
     @RequestMapping(value = "/")
     public String home(Model model) {
 
-        downloader.doDownload();
+
 
         LocalDate date = LocalDate.now();
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");

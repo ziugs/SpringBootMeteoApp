@@ -12,6 +12,8 @@ import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+
 
 @Component
 public class Downloader {
@@ -64,6 +66,7 @@ public class Downloader {
         return okta;
     }
 
+    @PostConstruct
     public void doDownload() {
         FTPClient ftpClient = new FTPClient();
         ftpClient.setControlEncoding("UTF-8");
