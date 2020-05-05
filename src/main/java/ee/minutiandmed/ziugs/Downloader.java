@@ -29,7 +29,6 @@ public class Downloader {
     private static final int INDEXOFOKTA = 23;
     private static final int INDEXOFUPDATETIMEONSERVER = 0;
 
-    private List<String> allValues = new ArrayList<>();
     private List<String> updateTimeOnServer = new ArrayList<>();
     private List<String> windDirection = new ArrayList<>();
     private List<String> windSpeed = new ArrayList<>();
@@ -73,7 +72,7 @@ public class Downloader {
         Map<Stations, List<String>> meteoData = new HashMap<>();
         try {
             ftpClient.connect("ftp.emhi.ee", 21);
-            ftpClient.login("ppalennusalk", "3ecugEcr");
+            ftpClient.login("****", "****");
             ftpClient.enterLocalPassiveMode();
             Arrays.stream(Stations.values()).forEach(station -> meteoData.put(station,
                     parse(retrieveFile(FOLDER.concat(station.getCsvFileName()), ftpClient))));
@@ -94,46 +93,35 @@ public class Downloader {
     private List<String> parse(ByteArrayOutputStream bos) {
 
         try (CSVParser parser = new CSVParser(new StringReader(new String(bos.toByteArray(), "UTF-8")),
-                CSVFormat.DEFAULT.withDelimiter(';'));) {
+                CSVFormat.DEFAULT.withDelimiter(';'))) {
             List<CSVRecord> lines = parser.getRecords();
-            List<String> result = new ArrayList<String>();
-            lines.get(lines.size() - 1).forEach(str -> result.add(str));
-
-            for (int i = 0; i < result.size(); i++) {
-                String b = result.get(i);
-                allValues.add(b);
-            }
+            List<String> allValues = new ArrayList<String>();
+            allValues.clear();
+            lines.get(lines.size() - 1).forEach(str -> allValues.add(str));
 
             for (int i = INDEXOFVISIBILITY; i < allValues.size(); i += NUMBEROFCOLUMNS) {
-                allValues.get(i);
                 visibility.add(allValues.get(i));
             }
             for (int i = INDEXOFWINDDIRECTION; i < allValues.size(); i += NUMBEROFCOLUMNS) {
-                allValues.get(i);
                 windDirection.add(allValues.get(i));
             }
             for (int i = INDEXOFWINDSPEED; i < allValues.size(); i += NUMBEROFCOLUMNS) {
-                allValues.get(i);
                 windSpeed.add(allValues.get(i));
             }
             for (int i = INDEXOFWEATHERFENOMENON; i < allValues.size(); i += NUMBEROFCOLUMNS) {
-                allValues.get(i);
                 weatherFenomenon.add(allValues.get(i));
             }
             for (int i = INDEXOFCLOUDBASE; i < allValues.size(); i += NUMBEROFCOLUMNS) {
-                allValues.get(i);
                 cloudBase.add(allValues.get(i));
             }
             for (int i = INDEXOFOKTA; i < allValues.size(); i += NUMBEROFCOLUMNS) {
-                allValues.get(i);
                 okta.add(allValues.get(i));
             }
             for (int i = INDEXOFUPDATETIMEONSERVER; i < allValues.size(); i += NUMBEROFCOLUMNS) {
-                allValues.get(i);
                 updateTimeOnServer.add(allValues.get(i));
             }
 
-            return result;
+            return allValues;
 
         } catch (IOException e) {
             throw new RuntimeException(e);
