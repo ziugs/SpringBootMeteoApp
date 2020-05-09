@@ -15,19 +15,23 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 
+
+
 @Component
 public class Downloader {
 
+
+
     private static final String FOLDER = "/10_min_andmed/";
 
-    private static final int NUMBEROFCOLUMNS = 33;
-    private static final int INDEXOFVISIBILITY = 20;
-    private static final int INDEXOFWINDDIRECTION = 11;
-    private static final int INDEXOFWINDSPEED = 7;
-    private static final int INDEXOFWEATHERFENOMENON = 15;
-    private static final int INDEXOFCLOUDBASE = 22;
-    private static final int INDEXOFOKTA = 23;
-    private static final int INDEXOFUPDATETIMEONSERVER = 0;
+    private static final int NUMBER_OF_COLUMNS = 33;
+    private static final int INDEX_OF_VISIBILITY = 20;
+    private static final int INDEX_OF_WIND_DIRECTION = 11;
+    private static final int INDEX_OF_WIND_SPEED = 7;
+    private static final int INDEX_OF_WEATHER_FENOMENON = 15;
+    private static final int INDEX_OF_CLOUDBASE = 22;
+    private static final int INDEX_OF_OKTA = 23;
+    private static final int INDEX_OF_UPDATE_TIME_ON_SERVER = 0;
 
     private List<String> updateTimeOnServer = new ArrayList<>();
     private List<String> windDirection = new ArrayList<>();
@@ -67,12 +71,13 @@ public class Downloader {
 
     @PostConstruct
     void doDownload() {
+
         FTPClient ftpClient = new FTPClient();
         ftpClient.setControlEncoding("UTF-8");
         Map<Stations, List<String>> meteoData = new HashMap<>();
         try {
             ftpClient.connect("ftp.emhi.ee", 21);
-            ftpClient.login("****", "****");
+            ftpClient.login("ppalennusalk", "3ecugEcr");
             ftpClient.enterLocalPassiveMode();
             Arrays.stream(Stations.values()).forEach(station -> meteoData.put(station,
                     parse(retrieveFile(FOLDER.concat(station.getCsvFileName()), ftpClient))));
@@ -99,25 +104,25 @@ public class Downloader {
             allValues.clear();
             lines.get(lines.size() - 1).forEach(str -> allValues.add(str));
 
-            for (int i = INDEXOFVISIBILITY; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+            for (int i = INDEX_OF_VISIBILITY; i < allValues.size(); i += NUMBER_OF_COLUMNS) {
                 visibility.add(allValues.get(i));
             }
-            for (int i = INDEXOFWINDDIRECTION; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+            for (int i = INDEX_OF_WIND_DIRECTION; i < allValues.size(); i += NUMBER_OF_COLUMNS) {
                 windDirection.add(allValues.get(i));
             }
-            for (int i = INDEXOFWINDSPEED; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+            for (int i = INDEX_OF_WIND_SPEED; i < allValues.size(); i += NUMBER_OF_COLUMNS) {
                 windSpeed.add(allValues.get(i));
             }
-            for (int i = INDEXOFWEATHERFENOMENON; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+            for (int i = INDEX_OF_WEATHER_FENOMENON; i < allValues.size(); i += NUMBER_OF_COLUMNS) {
                 weatherFenomenon.add(allValues.get(i));
             }
-            for (int i = INDEXOFCLOUDBASE; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+            for (int i = INDEX_OF_CLOUDBASE; i < allValues.size(); i += NUMBER_OF_COLUMNS) {
                 cloudBase.add(allValues.get(i));
             }
-            for (int i = INDEXOFOKTA; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+            for (int i = INDEX_OF_OKTA; i < allValues.size(); i += NUMBER_OF_COLUMNS) {
                 okta.add(allValues.get(i));
             }
-            for (int i = INDEXOFUPDATETIMEONSERVER; i < allValues.size(); i += NUMBEROFCOLUMNS) {
+            for (int i = INDEX_OF_UPDATE_TIME_ON_SERVER; i < allValues.size(); i += NUMBER_OF_COLUMNS) {
                 updateTimeOnServer.add(allValues.get(i));
             }
 
