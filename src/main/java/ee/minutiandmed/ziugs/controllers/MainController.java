@@ -1,9 +1,10 @@
 package ee.minutiandmed.ziugs.controllers;
 
-
 import ee.minutiandmed.ziugs.Downloader;
+import ee.minutiandmed.ziugs.DownloaderData;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,14 +17,13 @@ import java.time.format.DateTimeFormatter;
 public class MainController {
 
 
-    private static final String[] STATIONSARRAY = {"jogeva", "johvi", "kihnu", "kunda", "kuusiku", "laanenigula", "narva", "parnu", "ristna", "ruhnu", "sorve", "harku", "toravere", "mustvee", "turi", "vaikemaarja", "viljandi", "vilsandi", "voru"};
-    private static final String[] STATIONSARRAY2 = {"jogeva2", "johvi2", "kihnu2", "kunda2", "kuusiku2", "laanenigula2", "narva2", "parnu2", "ristna2", "ruhnu2", "sorve2", "harku2", "toravere2", "mustvee2", "turi2", "vaikemaarja2", "viljandi2", "vilsandi2", "voru2"};
-    private static final String[] STATIONSARRAY3 = {"jogeva3", "johvi3", "kihnu3", "kunda3", "kuusiku3", "laanenigula3", "narva3", "parnu3", "ristna3", "ruhnu3", "sorve3", "harku3", "toravere3", "mustvee3", "turi3", "vaikemaarja3", "viljandi3", "vilsandi3", "voru3"};
+    private static final String[] STATION_SARRAY = {"jogeva", "johvi", "kihnu", "kunda", "kuusiku", "laanenigula",
+            "narva", "parnu", "ristna", "ruhnu", "sorve", "harku", "toravere", "mustvee", "turi", "vaikemaarja",
+            "viljandi", "vilsandi", "voru"};
+
 
     @Autowired
     private Downloader downloader;
-    //@Autowired
-    //private RWRL rwrl;
 
     @RequestMapping(value = "/")
     public String home(Model model) {
@@ -31,36 +31,24 @@ public class MainController {
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM");
         String formattedDate = date.format(dateFormat);
+        DownloaderData data = downloader.getData();
+        System.out.println(data.getUpdateTimeOnServer().get(0));
 
-        LocalTime lt = LocalTime.parse(downloader.getUpdateTimeOnServer().get(0));
-        model.addAttribute("time", "Hetkel on kaardil " + formattedDate + " " + timeFormat.format(lt.plusMinutes(3)) + " UTC andmed");
+        LocalTime lt = LocalTime.parse(data.getUpdateTimeOnServer().get(0));
+        model.addAttribute("time", String.format("Hetkel on kaardil %s %s UTC andmed", formattedDate, timeFormat.format(lt.plusMinutes(3))));
 
-        for (int i = 0; i < STATIONSARRAY.length; i++) {
-            if (downloader.getCloudBase().get(i).isBlank()) {
-                model.addAttribute(STATIONSARRAY[i], "N/A " + downloader.getVisibility().get(i) + " km");
+        for (int i = 0; i < STATION_SARRAY.length; i++) {
+            if (data.getCloudBase().get(i).isBlank()) {
+                model.addAttribute(STATION_SARRAY[i], String.format("N/A %s km", data.getVisibility().get(i)));
             } else {
-                model.addAttribute(STATIONSARRAY[i], downloader.getCloudBase().get(i) + " m " + downloader.getOkta().get(i) + " " + downloader.getVisibility().get(i) + " km");
-            }
-        }
-
-        for (int i = 0; i < STATIONSARRAY2.length; i++) {
-            if (downloader.getWindDirection().get(i).isBlank()) {
-                model.addAttribute(STATIONSARRAY2[i], "N/A");
-            } else {
-                model.addAttribute(STATIONSARRAY2[i], downloader.getWindDirection().get(i) + "° " + downloader.getWindSpeed().get(i) + " m/s");
-            }
-        }
-
-        for (int i = 0; i < STATIONSARRAY3.length; i++) {
-            if (downloader.getWeatherFenomenon().get(i).isBlank()) {
-                model.addAttribute(STATIONSARRAY3[i], "N/A");
-            } else {
-                model.addAttribute(STATIONSARRAY3[i], downloader.getWeatherFenomenon().get(i));
+                model.addAttribute(STATION_SARRAY[i], String.format("%s m %s %s km <br/> %s° %s m/s <br/> %s",
+                        data.getCloudBase().get(i), data.getOkta().get(i), data.getVisibility().get(i),
+                        data.getWindDirection().get(i), data.getWindSpeed().get(i),
+                        data.getWeatherFenomenon().get(i)));
             }
         }
 
         return "home";
-
     }
 
 
