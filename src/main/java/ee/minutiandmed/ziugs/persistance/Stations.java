@@ -1,4 +1,4 @@
-package ee.minutiandmed.ziugs;
+package ee.minutiandmed.ziugs.persistance;
 
 public enum Stations {
 

@@ -3,10 +3,14 @@ package ee.minutiandmed.ziugs;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import ee.minutiandmed.ziugs.persistance.CsvIndex;
+import ee.minutiandmed.ziugs.persistance.Stations;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -18,24 +22,15 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
+
 @Component
 public class Downloader {
 
-    private ReadWriteLock rwlock = new ReentrantReadWriteLock();
-
     private static final String FOLDER = "/10_min_andmed/";
-
     private static final int NUMBER_OF_COLUMNS = 33;
-    private static final int INDEX_OF_VISIBILITY = 20;
-    private static final int INDEX_OF_WIND_DIRECTION = 11;
-    private static final int INDEX_OF_WIND_SPEED = 7;
-    private static final int INDEX_OF_WEATHER_FENOMENON = 15;
-    private static final int INDEX_OF_CLOUDBASE = 22;
-    private static final int INDEX_OF_OKTA = 23;
-    private static final int INDEX_OF_UPDATE_TIME_ON_SERVER = 0;
-
     private static final Logger LOGGER = LoggerFactory.getLogger(Downloader.class);
-
+    public static final Charset UTF_8 = StandardCharsets.UTF_8;
+    private ReadWriteLock rwlock = new ReentrantReadWriteLock();
     private DownloaderData data = new DownloaderData(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
             new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 
@@ -43,18 +38,16 @@ public class Downloader {
     @Scheduled(cron = "0 4/10 0-23 * * ?")
     void doDownloadFromFtp() {
         try {
-
             rwlock.writeLock().lock();
             FTPClient ftpClient = new FTPClient();
-            ftpClient.setControlEncoding("UTF-8");
-            Map<Stations, List<String>> meteoData = new HashMap<>();
+            ftpClient.setControlEncoding(UTF_8.name());
             try {
                 ftpClient.connect("ftp.emhi.ee", 21);
                 ftpClient.login("ppalennusalk", "3ecugEcr");
                 ftpClient.enterLocalPassiveMode();
-
-                Arrays.stream(Stations.values()).forEach(station -> meteoData.put(station,
-                        parse(retrieveFile(FOLDER.concat(station.getCsvFileName()), ftpClient))));
+                data.clear();
+                Arrays.stream(Stations.values()).forEach(station ->
+                        parse(retrieveFile(FOLDER.concat(station.getCsvFileName()), ftpClient)));
 
             } catch (IOException e) {
                 LOGGER.error("Error happend  during reading the file", e);
@@ -76,34 +69,12 @@ public class Downloader {
 
     private List<String> parse(ByteArrayOutputStream bos) {
 
-        try (CSVParser parser = new CSVParser(new StringReader(new String(bos.toByteArray(), "UTF-8")),
+        try (CSVParser parser = new CSVParser(new StringReader(new String(bos.toByteArray(), UTF_8.name())),
                 CSVFormat.DEFAULT.withDelimiter(';'))) {
             List<CSVRecord> lines = parser.getRecords();
-            List<String> allValues = new ArrayList<String>();
+            List<String> allValues = new ArrayList<>();
             lines.get(lines.size() - 1).forEach(str -> allValues.add(str));
-
-            for (int i = INDEX_OF_VISIBILITY; i < allValues.size(); i += NUMBER_OF_COLUMNS) {
-                data.getVisibility().add(allValues.get(i));
-            }
-            for (int i = INDEX_OF_WIND_DIRECTION; i < allValues.size(); i += NUMBER_OF_COLUMNS) {
-                data.getWindDirection().add(allValues.get(i));
-            }
-            for (int i = INDEX_OF_WIND_SPEED; i < allValues.size(); i += NUMBER_OF_COLUMNS) {
-                data.getWindSpeed().add(allValues.get(i));
-            }
-            for (int i = INDEX_OF_WEATHER_FENOMENON; i < allValues.size(); i += NUMBER_OF_COLUMNS) {
-                data.getWeatherFenomenon().add(allValues.get(i));
-            }
-            for (int i = INDEX_OF_CLOUDBASE; i < allValues.size(); i += NUMBER_OF_COLUMNS) {
-                data.getCloudBase().add(allValues.get(i));
-            }
-            for (int i = INDEX_OF_OKTA; i < allValues.size(); i += NUMBER_OF_COLUMNS) {
-                data.getOkta().add(allValues.get(i));
-            }
-            for (int i = INDEX_OF_UPDATE_TIME_ON_SERVER; i < allValues.size(); i += NUMBER_OF_COLUMNS) {
-                data.getUpdateTimeOnServer().add(allValues.get(i));
-            }
-
+            Arrays.stream(CsvIndex.values()).forEach(csvIndex -> extractedData(csvIndex, allValues));
             return allValues;
 
         } catch (IOException e) {
@@ -134,7 +105,11 @@ public class Downloader {
         } finally {
             rwlock.readLock().unlock();
         }
-
     }
 
+    private void extractedData(CsvIndex index, List<String> allValues) {
+        for (int i = index.getIndex(); i < allValues.size(); i += NUMBER_OF_COLUMNS) {
+            index.getList(data).add(allValues.get(i));
+        }
+    }
 }
