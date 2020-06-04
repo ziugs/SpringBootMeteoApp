@@ -74,7 +74,7 @@ public class Downloader {
             List<CSVRecord> lines = parser.getRecords();
             List<String> allValues = new ArrayList<>();
             lines.get(lines.size() - 1).forEach(str -> allValues.add(str));
-            Arrays.stream(CsvIndex.values()).forEach(csvIndex -> extractedData(csvIndex, allValues));
+            Arrays.stream(CsvIndex.values()).forEach(csvIndex -> extractData(csvIndex, allValues));
             return allValues;
 
         } catch (IOException e) {
@@ -107,7 +107,7 @@ public class Downloader {
         }
     }
 
-    private void extractedData(CsvIndex index, List<String> allValues) {
+    private void extractData(CsvIndex index, List<String> allValues) {
         for (int i = index.getIndex(); i < allValues.size(); i += NUMBER_OF_COLUMNS) {
             index.getList(data).add(allValues.get(i));
         }

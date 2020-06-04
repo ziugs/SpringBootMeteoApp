@@ -1,6 +1,6 @@
 
 function refreshPage(){
-    window.location.reload();
+    window.location.reload(true);
 }
 
 

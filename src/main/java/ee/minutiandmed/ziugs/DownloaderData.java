@@ -54,6 +54,13 @@ public class DownloaderData {
         return okta;
     }
     public void clear() {
+        getUpdateTimeOnServer().clear();
+        getOkta().clear();
+        getCloudBase().clear();
+        getWeatherFenomenon().clear();
+        getWindDirection().clear();
+        getVisibility().clear();
+        getWindSpeed().clear();
 
     }
 }

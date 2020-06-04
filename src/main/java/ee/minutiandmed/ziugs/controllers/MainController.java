@@ -32,8 +32,6 @@ public class MainController {
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM");
         String formattedDate = date.format(dateFormat);
         DownloaderData data = downloader.getData();
-        data.clear();
-        System.out.println(data.getUpdateTimeOnServer().get(0));
 
         LocalTime lt = LocalTime.parse(data.getUpdateTimeOnServer().get(0));
         model.addAttribute("time", String.format("Hetkel on kaardil %s %s UTC andmed", formattedDate, timeFormat.format(lt.plusMinutes(3))));
